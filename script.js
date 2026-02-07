@@ -1,179 +1,121 @@
-// Main JavaScript file for Bailiff Advice UK website
+// Mobile Navigation Toggle
+const hamburger = document.querySelector('.hamburger');
+const navMenu = document.querySelector('.nav-menu');
 
-// DOM Content Loaded
+hamburger.addEventListener('click', () => {
+    hamburger.classList.toggle('active');
+    navMenu.classList.toggle('active');
+});
+
+// Close mobile menu when clicking a link
+document.querySelectorAll('.nav-link').forEach(n => n.addEventListener('click', () => {
+    hamburger.classList.remove('active');
+    navMenu.classList.remove('active');
+}));
+
+// Set current year in footer
+document.getElementById('currentYear').textContent = new Date().getFullYear();
+
+// Contact Form Submission with Web3Forms
 document.addEventListener('DOMContentLoaded', function() {
-    // Set current year in footer
-    document.getElementById('current-year').textContent = new Date().getFullYear();
+    const contactForm = document.getElementById('contactForm');
     
-    // Set current date for legal pages
-    const currentDateElements = document.querySelectorAll('#current-date');
-    if (currentDateElements.length > 0) {
-        const today = new Date();
-        const formattedDate = today.toLocaleDateString('en-GB', {
-            day: 'numeric',
-            month: 'long',
-            year: 'numeric'
-        });
-        currentDateElements.forEach(el => {
-            el.textContent = formattedDate;
-        });
-    }
-    
-    // Mobile Navigation Toggle
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
-    
-    if (hamburger) {
-        hamburger.addEventListener('click', function() {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-        });
-        
-        // Close mobile menu when clicking on a link
-        document.querySelectorAll('.nav-menu a').forEach(link => {
-            link.addEventListener('click', () => {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-            });
-        });
-    }
-    
-    // Contact Form Handling
-    const homeContactForm = document.getElementById('homeContactForm');
-    const contactPageForm = document.getElementById('contactPageForm');
-    
-    // Handle homepage contact form
-    if (homeContactForm) {
-        homeContactForm.addEventListener('submit', function(e) {
+    if (contactForm) {
+        contactForm.addEventListener('submit', async function(e) {
             e.preventDefault();
-            handleFormSubmit(this, 'form-message');
-        });
-    }
-    
-    // Handle contact page form
-    if (contactPageForm) {
-        contactPageForm.addEventListener('submit', function(e) {
-            e.preventDefault();
-            handleFormSubmit(this, 'contact-page-form-message');
-        });
-    }
-    
-    // Smooth scrolling for anchor links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function(e) {
-            const href = this.getAttribute('href');
             
-            // Skip if it's just "#"
-            if (href === '#') return;
+            const submitButton = contactForm.querySelector('.btn-submit');
+            const originalButtonText = submitButton.innerHTML;
+            const resultDiv = document.getElementById('result');
             
-            // Don't intercept if it's a different page link
-            if (href.startsWith('#') && href.length > 1) {
-                e.preventDefault();
-                const targetId = href.substring(1);
-                const targetElement = document.getElementById(targetId);
+            // Show loading state
+            submitButton.innerHTML = '<i class="fas fa-spinner fa-spin"></i> Sending...';
+            submitButton.disabled = true;
+            
+            try {
+                const formData = new FormData(contactForm);
                 
-                if (targetElement) {
-                    // Close mobile menu if open
-                    if (hamburger && hamburger.classList.contains('active')) {
-                        hamburger.classList.remove('active');
-                        navMenu.classList.remove('active');
-                    }
+                // Replace with your actual Web3Forms access key
+                // You need to sign up at https://web3forms.com to get your access key
+                formData.append('access_key', 'YOUR_WEB3FORMS_ACCESS_KEY');
+                
+                const response = await fetch('https://api.web3forms.com/submit', {
+                    method: 'POST',
+                    body: formData
+                });
+                
+                const data = await response.json();
+                
+                if (data.success) {
+                    resultDiv.innerHTML = `
+                        <div class="form-result success">
+                            <i class="fas fa-check-circle"></i> Thank you! Your message has been sent successfully.
+                            We will contact you within 24 hours.
+                        </div>
+                    `;
+                    resultDiv.style.display = 'block';
+                    contactForm.reset();
                     
-                    window.scrollTo({
-                        top: targetElement.offsetTop - 100,
-                        behavior: 'smooth'
-                    });
+                    // Scroll to result
+                    resultDiv.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                } else {
+                    throw new Error(data.message || 'Something went wrong');
                 }
+            } catch (error) {
+                resultDiv.innerHTML = `
+                    <div class="form-result error">
+                        <i class="fas fa-exclamation-circle"></i> Sorry, there was an error sending your message.
+                        Please try again or call us directly at 0800 123 4567.
+                    </div>
+                `;
+                resultDiv.style.display = 'block';
+                console.error('Form submission error:', error);
+            } finally {
+                // Restore button
+                submitButton.innerHTML = originalButtonText;
+                submitButton.disabled = false;
+                
+                // Hide result after 10 seconds
+                setTimeout(() => {
+                    resultDiv.style.display = 'none';
+                }, 10000);
             }
         });
-    });
-    
-    // Form validation and submission function
-    function handleFormSubmit(form, messageElementId) {
-        // Basic form validation
-        const requiredFields = form.querySelectorAll('[required]');
-        let isValid = true;
-        
-        requiredFields.forEach(field => {
-            if (!field.value.trim()) {
-                isValid = false;
-                field.style.borderColor = '#e74c3c';
-            } else {
-                field.style.borderColor = '#ddd';
-            }
-        });
-        
-        if (!isValid) {
-            showFormMessage(messageElementId, 'Please fill in all required fields.', 'error');
-            return;
-        }
-        
-        // Get form data
-        const formData = new FormData(form);
-        const data = Object.fromEntries(formData);
-        
-        // Show sending message
-        showFormMessage(messageElementId, 'Sending your message...', 'info');
-        
-        // Simulate sending to email (in a real implementation, you would use a server-side script)
-        // For demo purposes, we'll simulate a successful submission
-        setTimeout(() => {
-            // In a real implementation, you would send the data to your server
-            // which would then forward it to anskr1901@gmail.com
-            // Example using EmailJS or a backend service would go here
-            
-            // For demo: Log data to console and show success message
-            console.log('Form submission data:', data);
-            console.log('In a real implementation, this would be sent to: anskr1901@gmail.com');
-            
-            // Show success message
-            showFormMessage(messageElementId, 'Thank you! Your message has been sent. We will get back to you as soon as possible.', 'success');
-            
-            // Reset form
-            form.reset();
-            
-            // In a real implementation, you would actually send the email
-            // Example using a service like EmailJS:
-            // emailjs.sendForm('service_xtxfhdf', 'template_ykyoirb', form, '_CQQuQnfynDUBwW1p')
-            //   .then(() => {
-            //     showFormMessage(messageElementId, 'Thank you! Your message has been sent.', 'success');
-            //     form.reset();
-            //   }, (error) => {
-            //     showFormMessage(messageElementId, 'Sorry, there was an error sending your message. Please try again.', 'error');
-            //     console.error('EmailJS error:', error);
-            //   });
-        }, 1500);
     }
-    
-    // Function to show form messages
-    function showFormMessage(elementId, message, type) {
-        const messageElement = document.getElementById(elementId);
-        if (messageElement) {
-            messageElement.textContent = message;
-            messageElement.className = type + '-message';
-            messageElement.style.display = 'block';
-            
-            // Scroll to message
-            messageElement.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
-            
-            // Hide message after 5 seconds for success, longer for error
-            const hideTime = type === 'success' ? 5000 : 10000;
-            setTimeout(() => {
-                messageElement.style.display = 'none';
-            }, hideTime);
-        }
-    }
-    
-    // Add active class to current page in navigation
-    const currentPage = window.location.pathname.split('/').pop() || 'index.html';
-    const navLinks = document.querySelectorAll('.nav-menu a');
-    
-    navLinks.forEach(link => {
-        const linkHref = link.getAttribute('href');
-        if (linkHref === currentPage || (currentPage === '' && linkHref === 'index.html')) {
-            link.classList.add('active');
-        } else {
-            link.classList.remove('active');
+});
+
+// Smooth scrolling for anchor links
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function(e) {
+        e.preventDefault();
+        
+        const targetId = this.getAttribute('href');
+        if (targetId === '#') return;
+        
+        const targetElement = document.querySelector(targetId);
+        if (targetElement) {
+            window.scrollTo({
+                top: targetElement.offsetTop - 80,
+                behavior: 'smooth'
+            });
         }
     });
 });
+
+// Form validation
+function validateForm() {
+    const form = document.getElementById('contactForm');
+    const inputs = form.querySelectorAll('input[required], select[required], textarea[required]');
+    let isValid = true;
+    
+    inputs.forEach(input => {
+        if (!input.value.trim()) {
+            input.style.borderColor = '#e74c3c';
+            isValid = false;
+        } else {
+            input.style.borderColor = '#e0e0e0';
+        }
+    });
+    
+    return isValid;
+}
