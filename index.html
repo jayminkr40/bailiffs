@@ -1,157 +1,177 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Bailiff Advice </title>
-    <link rel="stylesheet" href="style.css">
+    <title>Bailiff Advice UK | Expert Help with Bailiff Issues</title>
+    <link rel="stylesheet" href="css/style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <meta name="description" content="Expert advice and assistance dealing with bailiffs, enforcement agents, and debt collection in the UK. Stop bailiff action today.">
 </head>
 <body>
-    <!-- Navigation -->
-    <nav class="navbar">
+    <!-- Header & Navigation -->
+    <header class="header">
         <div class="container">
-            <a href="index.html" class="logo">BailiffAdvice</a>
-            <div class="nav-links">
-                <a href="index.html">Home</a>
-                <a href="#services">Services</a>
-                <a href="#advice">Advice</a>
-                <a href="contact.html">Contact</a>
-                <a href="terms.html">Terms</a>
-                <a href="privacy.html">Privacy</a>
-            </div>
-            <button class="mobile-menu-btn">
-                <i class="fas fa-bars"></i>
-            </button>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <header class="hero">
-        <div class="container">
-            <h1>Expert Bailiff Advice & Debt Support</h1>
-            <p>Get professional help dealing with bailiffs, debt collectors, and enforcement agents</p>
-            <a href="#contact-form" class="btn-primary">Get Free Advice</a>
+            <nav class="navbar">
+                <a href="index.html" class="logo">BailiffAdvice<span>.uk</span></a>
+                <ul class="nav-menu">
+                    <li><a href="index.html" class="nav-link active">Home</a></li>
+                    <li><a href="about.html" class="nav-link">About Us</a></li>
+                    <li><a href="index.html#services" class="nav-link">Services</a></li>
+                    <li><a href="index.html#advice" class="nav-link">Advice</a></li>
+                    <li><a href="contact.html" class="nav-link">Contact</a></li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </nav>
         </div>
     </header>
 
-    <!-- Contact Form Section -->
-    <div class="container">
-        <div class="header">
-            <h1><i class="fas fa-gavel"></i> Bailiff Advice Request</h1>
-            <p>Complete this form to receive expert advice regarding bailiff matters</p>
+    <!-- Hero Section -->
+    <section class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h1>Stop Bailiff Action Today</h1>
+                <p class="subtitle">Expert advice and assistance dealing with bailiffs, enforcement agents, and debt collection in the UK</p>
+                <a href="contact.html" class="btn-primary">Get Free Consultation</a>
+                <a href="tel:08001234567" class="btn-secondary">
+                    <i class="fas fa-phone"></i> 0800 123 4567
+                </a>
+            </div>
         </div>
+    </section>
 
-        <div class="form-container">
-            <!-- Pattern Sequence Information -->
-            <div class="pattern-sequence">
-                <h3>Form Sequence:</h3>
-                <ol>
-                    <li>Personal Information (Name, Phone, Email)</li>
-                    <li>Bailiff Details (Optional)</li>
-                    <li>Your Message (Optional)</li>
-                    <li>Submission</li>
-                </ol>
-            </div>
-
-            <!-- Status Messages -->
-            <div id="successMessage" class="message success">
-                <i class="fas fa-check-circle"></i> Thank you! Your bailiff advice request has been submitted successfully.
-            </div>
+    <!-- Contact Form Section -->
+    <section class="contact-form-section" id="contact">
+        <div class="container">
+            <h2>Get Immediate Help with Bailiffs</h2>
+            <p class="section-subtitle">Fill out the form below for a free, confidential consultation</p>
             
-            <div id="errorMessage" class="message error">
-                <i class="fas fa-exclamation-circle"></i> There was an error submitting your form. Please try again.
+            <div class="contact-wrapper">
+                <div class="contact-info">
+                    <h3>Why Choose Us?</h3>
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> Free Initial Consultation</li>
+                        <li><i class="fas fa-check-circle"></i> Expert Bailiff Advice</li>
+                        <li><i class="fas fa-check-circle"></i> Stop Bailiff Action</li>
+                        <li><i class="fas fa-check-circle"></i> No Win No Fee Options</li>
+                        <li><i class="fas fa-check-circle"></i> 24/7 Emergency Support</li>
+                    </ul>
+                    
+                    <div class="contact-details">
+                        <h4>Contact Details</h4>
+                        <p><i class="fas fa-phone"></i> <strong>Emergency:</strong> 0800 123 4567</p>
+                        <p><i class="fas fa-envelope"></i> <strong>Email:</strong> help@bailiffadvice.uk</p>
+                        <p><i class="fas fa-clock"></i> <strong>Hours:</strong> 24/7 Available</p>
+                    </div>
+                </div>
+                
+                <div class="form-container">
+                    <form id="contactForm" action="https://api.web3forms.com/submit" method="POST">
+                        <input type="hidden" name="access_key" value="YOUR_WEB3FORMS_ACCESS_KEY">
+                        <input type="hidden" name="subject" value="New Bailiff Help Request">
+                        <input type="hidden" name="redirect" value="https://yourdomain.com/thank-you.html">
+                        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
+                        
+                        <div class="form-group">
+                            <label for="name">Full Name *</label>
+                            <input type="text" id="name" name="name" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="bailiff_type">Type of Bailiff Issue *</label>
+                            <select id="bailiff_type" name="bailiff_type" required>
+                                <option value="">Select an option</option>
+                                <option value="Council Tax">Council Tax Bailiffs</option>
+                                <option value="Parking Fines">Parking Fines Bailiffs</option>
+                                <option value="Court Fine">Court Fine Bailiffs</option>
+                                <option value="County Court">County Court Bailiffs</option>
+                                <option value="High Court">High Court Enforcement Officers</option>
+                                <option value="Other">Other Bailiff Issue</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="message">Your Situation *</label>
+                            <textarea id="message" name="message" rows="5" required placeholder="Please describe your bailiff situation..."></textarea>
+                        </div>
+                        
+                        <div class="form-group">
+                            <div class="checkbox-group">
+                                <input type="checkbox" id="privacy" name="privacy" required>
+                                <label for="privacy">I agree to the <a href="privacy-policy.html">Privacy Policy</a> and <a href="terms.html">Terms & Conditions</a></label>
+                            </div>
+                        </div>
+                        
+                        <button type="submit" class="btn-submit">
+                            <i class="fas fa-paper-plane"></i> Send Message
+                        </button>
+                        
+                        <div id="result" class="form-result"></div>
+                    </form>
+                </div>
             </div>
-
-            <!-- Form Instructions -->
-            <div class="form-note">
-                <p><i class="fas fa-info-circle"></i> Please fill in the required fields marked with an asterisk (*). The bailiff information and message fields are optional but helpful for providing more specific advice.</p>
-            </div>
-
-            <!-- Bailiff Advice Form -->
-            <form id="bailiffForm" action="https://api.web3forms.com/submit" method="POST">
-                <!-- Web3Forms Access Key -->
-                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
-                <input type="hidden" name="subject" value="New Bailiff Advice Request">
-                <input type="hidden" name="from_name" value="Bailiff Advice Form">
-                <input type="checkbox" name="botcheck" style="display: none;">
-
-                <!-- Sequence Step 1: Personal Information -->
-                <div class="form-group">
-                    <label for="name" class="required">Full Name</label>
-                    <div class="input-wrapper">
-                        <input type="text" id="name" name="name" placeholder="Enter your full name" required>
-                        <i class="fas fa-user input-icon"></i>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="phone" class="required">Phone Number</label>
-                    <div class="input-wrapper">
-                        <input type="tel" id="phone" name="phone" placeholder="Enter your phone number" required>
-                        <i class="fas fa-phone input-icon"></i>
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    <label for="email" class="required">Email Address</label>
-                    <div class="input-wrapper">
-                        <input type="email" id="email" name="email" placeholder="Enter your email address" required>
-                        <i class="fas fa-envelope input-icon"></i>
-                    </div>
-                </div>
-
-                <!-- Sequence Step 2: Bailiff Information (Optional) -->
-                <div class="form-group">
-                    <label for="bailiff">Bailiff Information <span class="optional">(Optional)</span></label>
-                    <div class="input-wrapper">
-                        <input type="text" id="bailiff" name="bailiff" placeholder="Bailiff name, company, or reference if known">
-                        <i class="fas fa-landmark input-icon"></i>
-                    </div>
-                    <small style="color: #718096; margin-top: 5px; display: block;">If you know the bailiff or enforcement company involved, please provide details</small>
-                </div>
-
-                <!-- Sequence Step 3: Your Message (Optional) -->
-                <div class="form-group">
-                    <label for="message">Your Message <span class="optional">(Optional)</span></label>
-                    <textarea id="message" name="message" placeholder="Please describe your situation and any specific questions you have about the bailiff matter..."></textarea>
-                    <small style="color: #718096; margin-top: 5px; display: block;">Provide details about your situation to help us give you more relevant advice</small>
-                </div>
-
-                <!-- Sequence Step 4: Submission -->
-                <button type="submit" class="submit-btn">
-                    <i class="fas fa-paper-plane"></i> Submit Advice Request
-                </button>
-            </form>
-
         </div>
     </section>
 
     <!-- Services Section -->
     <section class="services" id="services">
         <div class="container">
-            <h2>How We Can Help</h2>
+            <h2>Our Bailiff Services</h2>
             <div class="services-grid">
                 <div class="service-card">
                     <i class="fas fa-gavel"></i>
-                    <h3>Bailiff Rights</h3>
-                    <p>Understand what bailiffs can and cannot legally do when visiting your property.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-handshake"></i>
-                    <h3>Negotiation Support</h3>
-                    <p>Get help negotiating affordable payment plans with enforcement agents.</p>
-                </div>
-                <div class="service-card">
-                    <i class="fas fa-file-contract"></i>
-                    <h3>Document Review</h3>
-                    <p>We'll review bailiff notices and court documents to ensure they're valid.</p>
+                    <h3>Bailiff Negotiation</h3>
+                    <p>Professional negotiation with bailiffs to stop enforcement action and arrange affordable payment plans.</p>
                 </div>
                 <div class="service-card">
                     <i class="fas fa-balance-scale"></i>
-                    <h3>Court Procedures</h3>
-                    <p>Guidance on challenging bailiff action through court procedures.</p>
+                    <h3>Legal Challenges</h3>
+                    <p>Challenge improper bailiff actions and protect your rights through proper legal procedures.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-home"></i>
+                    <h3>Home Protection</h3>
+                    <p>Prevent bailiffs from entering your home and seizing your belongings unlawfully.</p>
+                </div>
+                <div class="service-card">
+                    <i class="fas fa-file-invoice-dollar"></i>
+                    <h3>Debt Advice</h3>
+                    <p>Comprehensive debt advice and solutions to deal with the root cause of bailiff action.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Advice Section -->
+    <section class="advice" id="advice">
+        <div class="container">
+            <h2>Bailiff Advice & Information</h2>
+            <div class="advice-content">
+                <div class="advice-item">
+                    <h3><i class="fas fa-exclamation-triangle"></i> What Bailiffs Can & Can't Do</h3>
+                    <p>Bailiffs have specific powers and limitations. They cannot force entry into your home for most debts, and there are strict rules they must follow.</p>
+                </div>
+                <div class="advice-item">
+                    <h3><i class="fas fa-shield-alt"></i> Your Rights Against Bailiffs</h3>
+                    <p>You have rights when dealing with bailiffs. Learn how to protect yourself from harassment and illegal enforcement actions.</p>
+                </div>
+                <div class="advice-item">
+                    <h3><i class="fas fa-hand-paper"></i> How to Stop Bailiffs</h3>
+                    <p>Immediate steps you can take to stop bailiff action, including negotiating payment plans and challenging improper behavior.</p>
                 </div>
             </div>
         </div>
@@ -162,28 +182,33 @@
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
-                    <h3>BailiffAdvice</h3>
-                    <p>Providing expert advice on bailiff and enforcement agent matters across the UK.</p>
+                    <h3>BailiffAdvice.uk</h3>
+                    <p>Providing expert advice and assistance for dealing with bailiffs and enforcement agents across the UK.</p>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
-                    <a href="index.html">Home</a>
-                    <a href="contact.html">Contact Us</a>
-                    <a href="terms.html">Terms & Conditions</a>
-                    <a href="privacy.html">Privacy Policy</a>
+                    <ul>
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="privacy-policy.html">Privacy Policy</a></li>
+                        <li><a href="terms.html">Terms & Conditions</a></li>
+                        <li><a href="contact.html">Contact Us</a></li>
+                    </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Contact Info</h3>
-                    <p><i class="fas fa-envelope"></i> advice@bailiffadvice.example.com</p>
                     <p><i class="fas fa-phone"></i> 0800 123 4567</p>
+                    <p><i class="fas fa-envelope"></i> help@bailiffadvice.uk</p>
+                    <p><i class="fas fa-clock"></i> 24/7 Emergency Service</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>&copy; 2023 BailiffAdvice. All rights reserved.</p>
+                <p>&copy; <span id="currentYear"></span> BailiffAdvice.uk. All rights reserved.</p>
+                <p>This site provides free advice but is not a substitute for legal advice from a qualified professional.</p>
             </div>
         </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script src="js/script.js"></script>
 </body>
 </html>
